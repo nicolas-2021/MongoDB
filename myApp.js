@@ -3,9 +3,6 @@ var mongoose = require('mongoose');
 
 let Person;
 
-const createAndSavePerson = (done) => {
-  done(null /*, data*/);
-};
 
 const createManyPeople = (arrayOfPeople, done) => {
   done(null /*, data*/);
@@ -60,6 +57,17 @@ const personSchema = new Schema({
 });
 
 Person = mongoose.model('Person',personSchema);
+
+const createAndSavePerson = (done) => {
+  var Roberto = new Person ({
+   name :'Roberto', age : 38, favoriteFoods :['Hamburguesas', 'Fideos'] 
+  });
+
+Roberto.save((err,data) => {
+   if (err) return console.error(err);
+   done(null, data)
+});
+};
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 //==>Este ultima linea de código es para conectar con el cluster de BDmongo importante es cambiar <password> y <myFirstDataBase> en el .env por sus valores que di al crearlas.

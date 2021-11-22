@@ -50,6 +50,17 @@ const queryChain = (done) => {
 
   done(null /*, data*/);
 };
+
+const Schema = mongoose.Schema;
+
+const personSchema = new Schema({
+  name : {type : String, requiered : true},
+  age : Number,
+  favoriteFoods : [String]
+});
+
+Person = mongoose.model('Person',personSchema);
+
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 //==>Este ultima linea de código es para conectar con el cluster de BDmongo importante es cambiar <password> y <myFirstDataBase> en el .env por sus valores que di al crearlas.
 /** **Well Done !!**
